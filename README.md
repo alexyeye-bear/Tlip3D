@@ -5,5 +5,5 @@ combine 3DVQ and contrastive learning
 
 ### Stage1 Train
 run vq part
-'''python
+```bash
 python train_vq.py
