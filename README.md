@@ -4,4 +4,6 @@ combine 3DVQ and contrastive learning
 ## Training
 
 ### Stage1 Train
-run train_vq.py
+run vq part
+'''python
+python train_vq.py
