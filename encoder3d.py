@@ -9,7 +9,7 @@ class Encoder3D(nn.Module):
         attn_resolutions = [16]
         num_res_blocks = 2
         layers = [nn.Conv3d(args.image_channels, channels[0], 3, 1, 1)]
-        resolution = 64  # 假设输入体积是 64x64x64
+        resolution = 64  # 输入体积是 64x64x64
 
         for i in range(len(channels) - 1):
             in_channels = channels[i]
@@ -43,11 +43,10 @@ if __name__ == "__main__":
     args = Args()
     model = Encoder3D(args)
 
-    # 创建一个 dummy 输入：batch_size=2, channels=1, depth=64, height=64, width=64
+    # batch_size=2, channels=1, depth=64, height=64, width=64
     # x = torch.randn(2,  args.image_channels, 52, 64, 52)
     x = torch.randn(2,  args.image_channels, 32, 32, 32)
 
-    # 运行前向传播
     with torch.no_grad():
         out = model(x)
 
