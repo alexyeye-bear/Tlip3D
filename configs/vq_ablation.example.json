@@ -1,0 +1,17 @@
+{
+  "quantizer": "residual_vq",
+  "token_grid": "8x8x8",
+  "num_codebook_vectors": 128,
+  "latent_dim": 64,
+  "beta": 0.25,
+  "fsq_levels": 8,
+  "rvq_num_quantizers": 2,
+  "volume_root": "${DATA_ROOT}/volumes",
+  "output_dir": "${OUTPUT_ROOT}/vq_ablation",
+  "epochs": 8,
+  "batch_size": 32,
+  "learning_rate": 0.0000225,
+  "train_batches_per_epoch": 32,
+  "val_batches_per_epoch": 8,
+  "num_workers": 4
+}

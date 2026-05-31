@@ -1,0 +1,12 @@
+token_root: ${DATA_ROOT}/tokens/sharded_pt_v1
+output_dir: ${OUTPUT_ROOT}/mask_transformer
+segment_len: 4
+stride: 1
+num_codebook_vectors: 128
+mask_ratio: 0.45
+dim: 192
+hidden_dim: 768
+n_layers: 4
+n_heads: 8
+batch_size: 8
+epochs: 30

@@ -1,0 +1,5 @@
+experiment,token_grid,objective,train_scope,validation_or_eval_metric,result,notes
+Mask Transformer 30ep,8x8x8,masked token prediction,about 100k frames from SimVQ partial tokens,final validation loss / masked accuracy,0.2819 / 0.9324,Completed 30 epochs; strongest current token-modeling result.
+Qwen VQ-LoRA teacher forcing,8x8x8,causal LM teacher forcing on VQ special tokens,about 100k frames from SimVQ partial tokens,epoch-2 validation loss / VQ accuracy,0.4455 / 0.8818,Uses atomic <vq_000>...<vq_127> tokens and LoRA with trainable embeddings/head.
+Qwen VQ-LoRA free-running,8x8x8,constrained autoregressive VQ suffix rollout,8 test 4-frame samples; keep first 60 percent VQ tokens and generate last 40 percent,micro / macro VQ accuracy,0.9628 / 0.9628,Small favorable evaluation; structure tags are teacher-provided and outputs are constrained to 128 VQ tokens.
+4x4x4 SimVQ partial precompute,4x4x4,VQ token export from epoch-7 SimVQ4 tokenizer,target 32 train shards and 4 test shards,status,running at last internal snapshot,Needed before matched 4x4x4 token-modeling experiments.

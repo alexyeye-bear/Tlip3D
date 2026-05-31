@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Model artifacts and private data
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.nii
+*.nii.gz
+*.npy
+!examples/**/*.npy
+
+# Experiment outputs
+outputs/
+runs/
+logs/
+log/
+nohup.out
+nohup_logs/
+workdirs/
+checks/
+result/
+token_modeling_runs*/
+vq_token_exports*/
+indices_shards/
+hf_cache/
+
+# Local/private assistant and editor state
+.cursor/
+.env
+*.env
