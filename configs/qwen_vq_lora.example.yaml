@@ -1,0 +1,13 @@
+token_root: ${DATA_ROOT}/tokens/sharded_pt_v1
+output_dir: ${OUTPUT_ROOT}/qwen_vq_lora
+model_name: Qwen/Qwen2.5-0.5B
+segment_len: 4
+stride: 1
+num_codebook_vectors: 128
+max_length: 4096
+batch_size: 1
+epochs: 3
+learning_rate: 0.0001
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05

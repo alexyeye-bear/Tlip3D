@@ -1,0 +1,7 @@
+method,quantizer,token_grid,epochs,batch_size,train_batches_per_epoch,val_batches_per_epoch,final_val_avg_corr,final_val_rec_loss,final_val_mse,final_val_psnr_dynamic,n_val_batches,notes
+EMA,ema,8x8x8,8,32,32,8,0.9047,0.0984,0.0442,30.4579,8,Matched five-method short ablation setting.
+SimVQ,simvq,8x8x8,8,32,32,8,0.9442,0.0814,0.0292,32.2795,8,Best matched setting among EMA and SimVQ; used for 8x8x8 token modeling.
+FSQ,fsq,8x8x8,8,16,64,16,0.9198,0.0793,0.0365,31.0747,16,Completed rerun used because the original 32-batch run produced no validation CSVs; setting is not perfectly matched.
+BFQ,bfq,8x8x8,8,32,32,8,0.9383,0.0772,0.0299,32.4662,8,Matched five-method short ablation setting.
+Residual VQ,residual_vq,8x8x8,8,32,32,8,0.9451,0.0758,0.0266,32.9467,8,Best final reconstruction metrics in the matched short ablation.
+SimVQ-4grid,simvq4,4x4x4,8,32,32,8,0.9370,0.0811,0.0320,32.1000,8,Additional 4x4x4 tokenizer run; validation CSV header was corrected after initially being misread.

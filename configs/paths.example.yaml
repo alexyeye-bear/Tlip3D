@@ -1,0 +1,13 @@
+# Copy this file and replace placeholders with your own local paths.
+data_root: ${DATA_ROOT}
+output_root: ${OUTPUT_ROOT}
+hf_cache_dir: ${HF_HOME}
+
+volumes:
+  train: ${DATA_ROOT}/volumes/train
+  test: ${DATA_ROOT}/volumes/test
+
+tokens:
+  root: ${DATA_ROOT}/tokens/sharded_pt_v1
+  train_shards: ${DATA_ROOT}/tokens/sharded_pt_v1/indices_shards/train
+  test_shards: ${DATA_ROOT}/tokens/sharded_pt_v1/indices_shards/test
