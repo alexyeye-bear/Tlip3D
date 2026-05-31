@@ -119,5 +119,25 @@ de-identified tables:
 - `results/token_generation_summary.csv`
 - `docs/experiments.md`
 
+### VQ Tokenizer Ablation
+
+| Method | Quantizer | Token grid | Epochs | Batch | Val corr ↑ | Rec loss ↓ | MSE ↓ | PSNR ↑ | Notes |
+| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| EMA | `ema` | 8x8x8 | 8 | 32 | 0.9047 | 0.0984 | 0.0442 | 30.4579 | Matched five-method short ablation setting. |
+| SimVQ | `simvq` | 8x8x8 | 8 | 32 | 0.9442 | 0.0814 | 0.0292 | 32.2795 | Main 8x8x8 token source for downstream token modeling. |
+| FSQ | `fsq` | 8x8x8 | 8 | 16 | 0.9198 | 0.0793 | 0.0365 | 31.0747 | Rerun used because the original 32-batch run produced no validation CSVs. |
+| BFQ | `bfq` | 8x8x8 | 8 | 32 | 0.9383 | 0.0772 | 0.0299 | 32.4662 | Matched five-method short ablation setting. |
+| Residual VQ | `residual_vq` | 8x8x8 | 8 | 32 | **0.9451** | **0.0758** | **0.0266** | **32.9467** | Best final reconstruction metrics in the matched short ablation. |
+| SimVQ-4grid | `simvq4` | 4x4x4 | 8 | 32 | 0.9370 | 0.0811 | 0.0320 | 32.1000 | Additional low-resolution tokenizer run for 4x4x4 token export. |
+
+### Token Generation And Modeling
+
+| Experiment | Token grid | Objective | Train / eval scope | Metric | Result | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| Mask Transformer 30ep | 8x8x8 | Masked token prediction | About 100k frames from SimVQ partial tokens | Final validation loss / masked accuracy | **0.2819 / 0.9324** | Strongest current token-modeling result. |
+| Qwen VQ-LoRA teacher forcing | 8x8x8 | Causal LM on VQ special tokens | About 100k frames from SimVQ partial tokens | Epoch-2 validation loss / VQ accuracy | 0.4455 / 0.8818 | Uses atomic `<vq_000>`...`<vq_127>` tokens and LoRA with trainable embeddings/head. |
+| Qwen VQ-LoRA free-running | 8x8x8 | Constrained autoregressive VQ suffix rollout | 8 test 4-frame samples; keep first 60% VQ tokens and generate last 40% | Micro / macro VQ accuracy | 0.9628 / 0.9628 | Small favorable evaluation; structure tags are teacher-provided and outputs are constrained to 128 VQ tokens. |
+| 4x4x4 SimVQ partial precompute | 4x4x4 | VQ token export from epoch-7 SimVQ4 tokenizer | Target 32 train shards and 4 test shards | Status | Running at last internal snapshot | Needed before matched 4x4x4 token-modeling experiments. |
+
 No raw fMRI data, subject-level manifests, checkpoints, token shards, logs, or
 local machine paths are distributed in this repository.
